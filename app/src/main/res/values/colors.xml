@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#4884D0</color>
+    <color name="colorAccent">#FFF</color>
+    <color name="twitterBlue">#00A1F1</color>
+
+    <color name="light_grey">#f5f5f5</color>
+    <color name="grey">#eceff1</color>
+</resources>

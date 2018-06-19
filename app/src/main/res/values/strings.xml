@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Tweets Sentiments Analyzer</string>
+    <string name="search_user_hint">Usuário do Twitter</string>
+    <string name="user_invalid">Usuário inválido</string>
+    <string name="user_not_provided">Campo obrigatório</string>
+    <string name="find_user">PROCURAR</string>
+
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">vV0VrfuEu9gt2YW5GjZGQOhhr</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">HwauSKyD1kqXfbLlfADwKtmnhVfJoAiEran9UOfSjPFHJugs7r</string>
+    <string name="user_name_hint">Digite o usuário</string>
+    <string name="api_error">Ops! Ocorreu um erro! Tente novamente.</string>
+    <string name="no_connection_error">Verifique sua conexão</string>
+    <string name="user_not_found">Usuário não encontrado</string>
+</resources>
