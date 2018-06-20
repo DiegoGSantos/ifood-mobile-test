@@ -20,6 +20,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -36,6 +40,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation "org.koin:koin-android-architecture:$koin_version"
+    implementation "com.android.support:support-emoji-appcompat:$support_libraries_version"
 
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.1'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'

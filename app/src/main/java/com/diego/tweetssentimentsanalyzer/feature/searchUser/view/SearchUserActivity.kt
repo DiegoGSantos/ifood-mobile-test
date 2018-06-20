@@ -34,8 +34,8 @@ class SearchUserActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        viewModel()?.searchUserScreenState?.observe(this, Observer<SearchUserScreenState> { movieDetail ->
-            movieDetail?.let {
+        viewModel()?.searchUserScreenState?.observe(this, Observer<SearchUserScreenState> { searchUserScreenState ->
+            searchUserScreenState?.let {
                 when {
                     it.isInitialState() -> {
                         resetScreen()

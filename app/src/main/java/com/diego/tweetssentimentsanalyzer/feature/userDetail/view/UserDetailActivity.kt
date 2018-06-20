@@ -1,22 +1,39 @@
 package com.diego.tweetssentimentsanalyzer.feature.userDetail.view
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import com.bumptech.glide.Glide
 import com.diego.tweetssentimentsanalyzer.R
 import com.diego.tweetssentimentsanalyzer.customViews.RoundedCornersTransformation
+import com.diego.tweetssentimentsanalyzer.feature.searchUser.viewModel.SearchUserViewModel
+import com.diego.tweetssentimentsanalyzer.feature.userDetail.view.adapter.TweetsAdapter
+import com.diego.tweetssentimentsanalyzer.feature.userDetail.viewModel.UserDetailViewModel
+import com.diego.tweetssentimentsanalyzer.feature.userDetail.viewModel.UserDetailViewModelFactory
 import com.google.gson.Gson
+import com.twitter.sdk.android.core.models.Tweet
 import com.twitter.sdk.android.core.models.User
 import kotlinx.android.synthetic.main.activity_user_detail.*
+import org.koin.android.ext.android.inject
 
 class UserDetailActivity : AppCompatActivity() {
+    private val viewModelFactory: UserDetailViewModelFactory by inject()
+    lateinit var tweetsAdapter: TweetsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_detail)
 
-        intent.extras.getString(userExtra).let {
+        setListeners()
+        setRecyclerView()
+
+        intent.extras.getString(userExtra)?.let {
             val user = Gson().fromJson(it, User::class.java)
             Glide.with(this).load(user.profileBannerUrl).into(userBanner)
             Glide.with(this)
@@ -27,6 +44,8 @@ class UserDetailActivity : AppCompatActivity() {
             userName.text = "@" + user.screenName
             setSupportActionBar(toolbar)
             setToolbar(user)
+
+            viewModel()?.getUserTweets(user.screenName)
         }
     }
 
@@ -43,10 +62,64 @@ class UserDetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun setListeners() {
+        viewModel()?.userDetailScreenState?.observe(this, Observer<UserDetailScreenState> {  userDetailScreenState ->
+            userDetailScreenState?.let {
+                when {
+                    it.isInitialState() -> {
+
+                    }
+                    it.isStatusOk() -> {
+                        showTweets(it.tweets)
+                    }
+                    it.isLoading() -> {
+                        showLoading()
+                    }
+                    it.isThereError() -> {
+                        showRequestError(getString(R.string.api_error))
+                    }
+                }
+            }
+        })
+    }
+
+    private fun showTweets(tweetsList: List<Tweet>?) {
+        progress.visibility = INVISIBLE
+        tweets.visibility = VISIBLE
+
+        tweetsList?.let { tweetsAdapter.setList(it) }
+    }
+
+    private fun setRecyclerView() {
+        tweets.apply {
+            setHasFixedSize(true)
+
+            tweetsAdapter = TweetsAdapter { position: Int, tweet: Tweet -> viewModel()?.analyzeTweetEmotion(position,tweet.text)}
+            adapter = tweetsAdapter
+
+            val linearLayoutManager = LinearLayoutManager(this.context)
+            layoutManager = linearLayoutManager
+        }
+    }
+
+    private fun showLoading() {
+        progress.visibility = VISIBLE
+        tweets.visibility = INVISIBLE
+    }
+
+    private fun showRequestError(string: String?) {
+
+    }
+
     private fun setToolbar(user: User?) {
         collapsingToolbar.title = user?.name
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         collapsingToolbar.setExpandedTitleColor(resources.getColor(android.R.color.transparent))
+    }
+
+    private fun viewModel(): UserDetailViewModel? {
+        return ViewModelProviders.of(this, viewModelFactory)
+                .get(UserDetailViewModel::class.java)
     }
 }
