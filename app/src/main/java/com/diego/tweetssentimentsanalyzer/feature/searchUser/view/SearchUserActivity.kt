@@ -95,6 +95,7 @@ class SearchUserActivity : AppCompatActivity() {
     }
 
     private fun openUserDetail(user: User?) {
+        viewModel()?.resetState()
         user.let {
             UserDetailActivity.starter(this, user)
         }

@@ -4,9 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.diego.tweetssentimentsanalyzer.R
+import com.diego.tweetssentimentsanalyzer.customViews.RoundedCornersTransformation
 import com.google.gson.Gson
 import com.twitter.sdk.android.core.models.User
+import kotlinx.android.synthetic.main.activity_user_detail.*
 
 class UserDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +18,15 @@ class UserDetailActivity : AppCompatActivity() {
 
         intent.extras.getString(userExtra).let {
             val user = Gson().fromJson(it, User::class.java)
-            val t = ""
+            Glide.with(this).load(user.profileBannerUrl).into(userBanner)
+            Glide.with(this)
+                .load(user.profileImageUrlHttps.replace("_normal", "_bigger"))
+                .bitmapTransform(RoundedCornersTransformation(this,35, 2))
+                .into(userPhoto)
+            name.text = user.name
+            userName.text = "@" + user.screenName
+            setSupportActionBar(toolbar)
+            setToolbar(user)
         }
     }
 
@@ -30,5 +41,12 @@ class UserDetailActivity : AppCompatActivity() {
                 context.startActivity(intent)
             }
         }
+    }
+
+    private fun setToolbar(user: User?) {
+        collapsingToolbar.title = user?.name
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        collapsingToolbar.setExpandedTitleColor(resources.getColor(android.R.color.transparent))
     }
 }

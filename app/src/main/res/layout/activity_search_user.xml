@@ -11,6 +11,12 @@
     tools:context=".feature.searchUser.view.SearchUserActivity"
     android:background="@color/twitterBlue">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_twitter_logo"
+        android:layout_marginBottom="@dimen/hecto_margin"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
