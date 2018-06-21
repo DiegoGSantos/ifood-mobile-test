@@ -4,8 +4,8 @@ import com.diego.tweetssentimentsanalyzer.twitterRestClient.CustomTwitterApiClie
 import com.twitter.sdk.android.core.models.User
 import io.reactivex.Observable
 
-class SearchUserRemoteDataSource {
+class SearchUserRemoteDataSource(private val customTwitterApiClient: CustomTwitterApiClient) {
     fun getUser(userName: String): Observable<User> {
-        return CustomTwitterApiClient().findUser(userName)
+        return customTwitterApiClient.findUser(userName)
     }
 }

@@ -15,4 +15,11 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="SecondaryButton" parent="AppTheme">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/centi_text</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
 </resources>

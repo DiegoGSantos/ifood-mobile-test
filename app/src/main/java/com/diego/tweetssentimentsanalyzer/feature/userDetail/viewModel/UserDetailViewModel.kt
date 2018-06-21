@@ -3,14 +3,15 @@ package com.diego.tweetssentimentsanalyzer.feature.userDetail.viewModel
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.diego.tweetssentimentsanalyzer.feature.ScreenStatus
+import com.diego.tweetssentimentsanalyzer.feature.userDetail.data.TweetSentimentRepository
 import com.diego.tweetssentimentsanalyzer.feature.userDetail.data.UserDetailRepository
 import com.diego.tweetssentimentsanalyzer.feature.userDetail.view.UserDetailScreenState
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import java.text.FieldPosition
 
-class UserDetailViewModel(private val repository: UserDetailRepository, private val processScheduler: Scheduler,
-                          private val androidScheduler: Scheduler) : ViewModel() {
+class UserDetailViewModel(private val repository: UserDetailRepository, private val tweetSentimentRepository: TweetSentimentRepository,
+                          private val processScheduler: Scheduler, private val androidScheduler: Scheduler) : ViewModel() {
     var userDetailScreenState: MutableLiveData<UserDetailScreenState> = MutableLiveData()
 
     private var compositeDisposable = CompositeDisposable()
@@ -35,7 +36,23 @@ class UserDetailViewModel(private val repository: UserDetailRepository, private 
         compositeDisposable.add(disposable)
     }
 
-    fun analyzeTweetEmotion(position: Int, tweet: String) {
+    fun analyzeTweetSentiment(position: Int, tweet: String) {
+        var disposable = tweetSentimentRepository.analyzeTweet(tweet)
+                .observeOn(androidScheduler)
+                .subscribeOn(processScheduler)
+                .subscribe({
+                    result ->
+                    userDetailScreenState.value?.tweets?.get(position)?.sentiment =
+                            tweetSentimentRepository.getSentimentFromScore(result.documentSentiment.score)
+
+                    userDetailScreenState.value =
+                            UserDetailScreenState(ScreenStatus.OK.status, "", userDetailScreenState.value?.tweets)
+                }, {
+                    error ->
+                    error.printStackTrace()
+                })
+
+        compositeDisposable.add(disposable)
 
     }
 

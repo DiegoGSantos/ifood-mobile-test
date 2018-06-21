@@ -6,17 +6,18 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import com.diego.tweetssentimentsanalyzer.R
-import com.twitter.sdk.android.core.models.Tweet
+import com.diego.tweetssentimentsanalyzer.feature.userDetail.data.Tweet
+import com.diego.tweetssentimentsanalyzer.feature.userDetail.sentimentAnalyzer.naturalLanguage.Sentiments
+import com.diego.tweetssentimentsanalyzer.util.dateFormat
 import kotlinx.android.synthetic.main.view_tweet.view.*
 import java.util.*
 
-
-/**
- * Created by Rafaela Araujo
- * on 08/05/2018.
- */
 class TweetsAdapter(private val listener: (Int, Tweet) -> Unit) : RecyclerView.Adapter<TweetsAdapter.ViewHolder>() {
 
     private var tweetsList: List<Tweet> = ArrayList()
@@ -42,32 +43,38 @@ class TweetsAdapter(private val listener: (Int, Tweet) -> Unit) : RecyclerView.A
         internal fun bind(item: Tweet, listener: (Int, Tweet) -> Unit) = with(itemView) {
 
             tweetText.text = item.text
-//            retweeters.text = item.retweet_count.toNumberFormat()
-//            favorites.text = item.favorite_count.toNumberFormat()
-            tweetDate.text = item.createdAt
+            tweetDate.text = item.createdAt.dateFormat()
+            sentimentAnalysisProgress.visibility = GONE
 
-//            loadTweetEmotion(item.sentiment, verify_emotion)
+            loadTweetEmotion(item.sentiment, analyzeSentiment, sentiment)
             analyzeSentiment.setOnClickListener {
-//                if (item.sentiment == 0) {
-//                    verify_emotion.startAnimation()
+                if (item.sentiment == 0) {
+                    sentimentAnalysisProgress.visibility = VISIBLE
+                    analyzeSentiment.text = ""
+
                     listener(adapterPosition, item)
-//                }
+                }
             }
         }
+
+        private fun loadTweetEmotion(sentiment: Int, verify_emotion: Button, sentimentText: TextView) {
+            when (sentiment) {
+                Sentiments.NEUTRAL.sentiment ->
+                    setTweetEmotion(verify_emotion, sentimentText,
+                            "\uD83D\uDE10", R.string.neutral_emoji_text, R.color.neutral_color)
+                Sentiments.SAD.sentiment ->
+                    setTweetEmotion(verify_emotion, sentimentText,"\uD83D\uDE14", R.string.sad_emoji_text, R.color.sad_color)
+                Sentiments.HAPPY.sentiment ->
+                    setTweetEmotion(verify_emotion, sentimentText,"\uD83D\uDE03", R.string.happy_emoji_text, R.color.happy_color)
+                else -> verify_emotion.text = context.getString(R.string.analyze_sentiment)
+            }
+        }
+
+        private fun setTweetEmotion(verify_emotion: Button, textView: TextView, emoji: String, textResource: Int, bgColor: Int) {
+            verify_emotion.text = EmojiCompat.get().process(emoji)
+            verify_emotion.setBackgroundColor(context.resources.getColor(bgColor))
+            textView.text = context.getText(textResource)
+        }
+
     }
-
-//        private fun loadTweetEmotion(sentiment: Int, verify_emotion: CircularProgressButton) {
-//            when (sentiment) {
-//                SentimentsEnum.NEUTRAL.code -> setTweetEmotion(verify_emotion, R.string.neutral_emoji,R.drawable.neutral_sentiment_bg)
-//                SentimentsEnum.SAD.code -> setTweetEmotion(verify_emotion, R.string.sad_emoji,R.drawable.sad_sentiment_bg)
-//                SentimentsEnum.HAPPY.code -> setTweetEmotion(verify_emotion, R.string.happy_emoji,R.drawable.happy_sentiment_bg)
-//                else -> verify_emotion.text = context.getString(R.string.verify_tweet_text)
-//            }
-//        }
-
-//        private fun setTweetEmotion(verify_emotion: CircularProgressButton, idText:Int, idresource:Int){
-//            verify_emotion.text = EmojiCompat.get().process(context.getString(idText))
-//            verify_emotion.setBackgroundDrawable(ContextCompat.getDrawable(context,idresource))
-//        }
-
 }

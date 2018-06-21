@@ -19,7 +19,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:textColor="@color/grey"
             android:textSize="13sp" />
 
         <TextView
@@ -27,61 +26,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textColor="@color/grey"
-            android:textSize="14sp" />
+            android:textSize="@dimen/mili_text"
+            android:paddingBottom="@dimen/centi_text"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
-
-            <!--<br.com.simplepass.loading_button_lib.customViews.CircularProgressButton-->
-                <!--android:id="@+id/verify_emotion"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="30dp"-->
-                <!--android:background="@drawable/default_sentiment_bg"-->
-                <!--android:paddingLeft="5dp"-->
-                <!--android:paddingRight="5dp"-->
-                <!--android:text="Verify Tweet Emotion"-->
-                <!--android:textAllCaps="false"-->
-                <!--android:textColor="@color/gray"-->
-                <!--android:textSize="13sp"-->
-                <!--android:textStyle="normal"-->
-                <!--app:spinning_bar_color="@color/colorAccent"-->
-                <!--app:spinning_bar_padding="0dp"-->
-                <!--app:spinning_bar_width="3dp" />-->
-
-            <Button
-                android:id="@+id/analyzeSentiment"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <!--<TextView-->
-                    <!--android:id="@+id/retweeters"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:drawableStart="@drawable/ic_retweetar"-->
-                    <!--android:gravity="center"-->
-                    <!--android:textColor="@color/gray"-->
-                    <!--android:textSize="13sp" />-->
+                <Button
+                    android:id="@+id/analyzeSentiment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/analyze_sentiment"
+                    android:paddingLeft="@dimen/hecto_margin"
+                    android:paddingRight="@dimen/hecto_margin"
+                    style="@style/SecondaryButton" />
 
-                <!--<TextView-->
-                    <!--android:id="@+id/favorites"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_marginStart="20dp"-->
-                    <!--android:drawableStart="@drawable/ic_favorite"-->
-                    <!--android:gravity="center"-->
-                    <!--android:textColor="@color/gray"-->
-                    <!--android:textSize="13sp" />-->
+                <TextView
+                    android:id="@+id/sentiment"
+                    android:paddingLeft="@dimen/hecto_margin"
+                    android:textSize="@dimen/centi_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
             </LinearLayout>
-        </RelativeLayout>
+
+            <ProgressBar
+                android:indeterminate="true"
+                android:id="@+id/sentimentAnalysisProgress"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="gone"
+                android:paddingRight="@dimen/hecto_margin"
+                android:layout_gravity="center"/>
+
+        </FrameLayout>
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

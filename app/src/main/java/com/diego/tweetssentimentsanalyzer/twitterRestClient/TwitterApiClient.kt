@@ -1,18 +1,14 @@
 package com.diego.tweetssentimentsanalyzer.twitterRestClient
 
+import com.diego.tweetssentimentsanalyzer.feature.userDetail.data.Tweet
 import com.twitter.sdk.android.core.Callback
 import com.twitter.sdk.android.core.Result
 import com.twitter.sdk.android.core.TwitterApiClient
 import com.twitter.sdk.android.core.TwitterException
-import com.twitter.sdk.android.core.models.Tweet
 import com.twitter.sdk.android.core.models.User
 import io.reactivex.Observable
-import okhttp3.Interceptor
 import retrofit2.Call
 import okhttp3.OkHttpClient
-
-
-
 
 class CustomTwitterApiClient(okHttpClient: OkHttpClient) : TwitterApiClient(okHttpClient) {
     private fun provideTwitterService(): Service {

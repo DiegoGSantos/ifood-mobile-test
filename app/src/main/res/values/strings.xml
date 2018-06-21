@@ -11,4 +11,12 @@
     <string name="api_error">Ops! Ocorreu um erro! Tente novamente.</string>
     <string name="no_connection_error">Verifique sua conexão</string>
     <string name="user_not_found">Usuário não encontrado</string>
+    <string name="analyze_sentiment">Analyze Sentiment</string>
+
+    <string name="neutral_emoji">😐</string>
+    <string name="neutral_emoji_text">Neutral Tweet!!</string>
+    <string name="sad_emoji">😔</string>
+    <string name="sad_emoji_text">Sad Tweet!!</string>
+    <string name="happy_emoji">😃</string>
+    <string name="happy_emoji_text">Happy Tweet!!</string>
 </resources>
