@@ -8,8 +8,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
+import android.view.View.*
 import com.bumptech.glide.Glide
 import com.diego.tweetssentimentsanalyzer.R
 import com.diego.tweetssentimentsanalyzer.customViews.RoundedCornersTransformation
@@ -112,8 +111,10 @@ class UserDetailActivity : AppCompatActivity() {
         tweets.visibility = INVISIBLE
     }
 
-    private fun showRequestError(string: String?) {
-
+    private fun showRequestError(errorMessage: String?) {
+        error.text = errorMessage
+        error.visibility = VISIBLE
+        progress.visibility = GONE
     }
 
     private fun setToolbar(user: User?) {

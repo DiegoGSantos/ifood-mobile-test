@@ -48,6 +48,7 @@ class SearchUserActivity : AppCompatActivity() {
                         showLoading()
                     }
                     it.isThereError() -> {
+                        resetScreen()
                         showRequestError(getString(R.string.api_error))
                     }
                     it.isUserInvalid() -> {
