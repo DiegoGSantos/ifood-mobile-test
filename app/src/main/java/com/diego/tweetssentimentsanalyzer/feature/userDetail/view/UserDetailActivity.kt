@@ -17,7 +17,7 @@ import com.diego.tweetssentimentsanalyzer.feature.userDetail.view.adapter.Tweets
 import com.diego.tweetssentimentsanalyzer.feature.userDetail.viewModel.UserDetailViewModel
 import com.diego.tweetssentimentsanalyzer.feature.userDetail.viewModel.UserDetailViewModelFactory
 import com.google.gson.Gson
-import com.twitter.sdk.android.core.models.User
+import com.diego.tweetssentimentsanalyzer.feature.searchUser.model.User
 import kotlinx.android.synthetic.main.activity_user_detail.*
 import org.koin.android.ext.android.inject
 

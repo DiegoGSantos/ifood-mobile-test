@@ -1,7 +1,7 @@
 package com.diego.tweetssentimentsanalyzer.feature.searchUser.data
 
 import com.diego.tweetssentimentsanalyzer.twitterRestClient.CustomTwitterApiClient
-import com.twitter.sdk.android.core.models.User
+import com.diego.tweetssentimentsanalyzer.feature.searchUser.model.User
 import io.reactivex.Observable
 
 class SearchUserRemoteDataSource(private val customTwitterApiClient: CustomTwitterApiClient) {

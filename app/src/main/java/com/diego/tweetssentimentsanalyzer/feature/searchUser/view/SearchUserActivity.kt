@@ -20,7 +20,7 @@ import android.view.View.VISIBLE
 import com.diego.tweetssentimentsanalyzer.manager.NetManager
 import android.text.Editable
 import com.diego.tweetssentimentsanalyzer.feature.userDetail.view.UserDetailActivity
-import com.twitter.sdk.android.core.models.User
+import com.diego.tweetssentimentsanalyzer.feature.searchUser.model.User
 
 class SearchUserActivity : AppCompatActivity() {
     private var startingActicity = true

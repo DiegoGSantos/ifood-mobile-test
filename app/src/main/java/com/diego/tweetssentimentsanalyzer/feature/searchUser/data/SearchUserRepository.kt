@@ -1,6 +1,6 @@
 package com.diego.tweetssentimentsanalyzer.feature.searchUser.data
 
-import com.twitter.sdk.android.core.models.User
+import com.diego.tweetssentimentsanalyzer.feature.searchUser.model.User
 import io.reactivex.Observable
 
 class SearchUserRepository(private val searchUserRemoteDataSource: SearchUserRemoteDataSource) {

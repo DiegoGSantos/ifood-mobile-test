@@ -1,7 +1,7 @@
 package com.diego.tweetssentimentsanalyzer.feature.searchUser.view
 
 import com.diego.tweetssentimentsanalyzer.feature.ScreenState
-import com.twitter.sdk.android.core.models.User
+import com.diego.tweetssentimentsanalyzer.feature.searchUser.model.User
 
 class SearchUserScreenState(status: Int, message: String, val user: User?) : ScreenState(status, message) {
     fun isUserInvalid(): Boolean = status == SearchUserScreenStatus.INVALID_USER.status
