@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">Tweets Sentiments Analyzer</string>
-    <string name="search_user_hint">Usuário do Twitter</string>
-    <string name="user_invalid">Usuário inválido</string>
-    <string name="user_not_provided">Campo obrigatório</string>
-    <string name="find_user">PROCURAR</string>
+    <string name="search_user_hint">Twitter User</string>
+    <string name="user_invalid">Invalid User</string>
+    <string name="user_not_provided">Required</string>
+    <string name="find_user">Find User</string>
 
     <string name="com.twitter.sdk.android.CONSUMER_KEY">vV0VrfuEu9gt2YW5GjZGQOhhr</string>
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">HwauSKyD1kqXfbLlfADwKtmnhVfJoAiEran9UOfSjPFHJugs7r</string>
-    <string name="user_name_hint">Digite o usuário</string>
-    <string name="api_error">Ops! Ocorreu um erro! Tente novamente.</string>
-    <string name="no_connection_error">Verifique sua conexão</string>
-    <string name="user_not_found">Usuário não encontrado</string>
+    <string name="user_name_hint">Type User</string>
+    <string name="api_error">Ops! Something went wrong. Please, try it again!</string>
+    <string name="no_connection_error">Verify your connection</string>
+    <string name="user_not_found">User not found</string>
     <string name="analyze_sentiment">Analyze Sentiment</string>
 
     <string name="neutral_emoji">😐</string>
@@ -19,5 +19,5 @@
     <string name="sad_emoji_text">Sad Tweet!!</string>
     <string name="happy_emoji">😃</string>
     <string name="happy_emoji_text">Happy Tweet!!</string>
-    <string name="no_tweets_message">Nenhum tweet encontrado para este usuário</string>
+    <string name="no_tweets_message">None tweets found for this user</string>
 </resources>
