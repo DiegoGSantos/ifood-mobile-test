@@ -6,6 +6,8 @@
   <img src="screenshot-3.png" width="250"/>
 </p>
 
+You can try it out from this <a href="https://drive.google.com/open?id=1PtbF_KFfJ1Xf0fcyXuVjvLnBKnM2wYlo">link here!</a>
+
 This app list tweets from one user you search, list its info and tweets and analyze each tweet sentiment.
 It uses:
 <p>-Kotlin</p>
