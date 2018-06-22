@@ -10,6 +10,7 @@ import com.diego.tweetssentimentsanalyzer.feature.userDetail.viewModel.UserDetai
 import com.diego.tweetssentimentsanalyzer.manager.NetManager
 import com.diego.tweetssentimentsanalyzer.twitterRestClient.CustomTwitterApiClient
 import com.diego.tweetssentimentsanalyzer.twitterRestClient.MockInterceptor
+import com.diego.tweetssentimentsanalyzer.util.IS_UNDER_TEST
 import com.tweet.data.remote.naturalLanguage.SentimentAnalyzerService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,8 +33,12 @@ val module : Module = applicationContext {
 
     val loggingInterceptor = HttpLoggingInterceptor()
     loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    val interceptor = MockInterceptor()
 
-    bean { OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .build() }
+    bean {
+        OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .addInterceptor(interceptor)
+                .build()
+    }
 }
