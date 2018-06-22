@@ -82,6 +82,9 @@ class UserDetailActivity : AppCompatActivity() {
                     it.isThereError() -> {
                         showRequestError(getString(R.string.api_error))
                     }
+                    it.isThereNoTweets() -> {
+                        showRequestError(getString(R.string.no_tweets_message))
+                    }
                 }
             }
         })

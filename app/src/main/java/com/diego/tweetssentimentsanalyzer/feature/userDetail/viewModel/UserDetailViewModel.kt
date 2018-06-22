@@ -26,8 +26,9 @@ class UserDetailViewModel(private val repository: UserDetailRepository, private 
                 .subscribeOn(processScheduler)
                 .subscribe({
                     tweets ->
+                    val status = if (tweets.isNotEmpty()) ScreenStatus.OK.status else ScreenStatus.NO_TWEETS_FOUND.status
                     userDetailScreenState.value =
-                            UserDetailScreenState(ScreenStatus.OK.status, "", tweets)
+                            UserDetailScreenState(status, "", tweets)
                 }, { error ->
                     userDetailScreenState.value =
                             UserDetailScreenState(ScreenStatus.ERROR.status, "", null)

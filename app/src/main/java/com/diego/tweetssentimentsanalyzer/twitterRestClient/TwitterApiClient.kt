@@ -1,11 +1,13 @@
 package com.diego.tweetssentimentsanalyzer.twitterRestClient
 
 import com.diego.tweetssentimentsanalyzer.feature.userDetail.data.Tweet
+import com.diego.tweetssentimentsanalyzer.util.TWITTER_TWEETS_URL
+import com.diego.tweetssentimentsanalyzer.util.TWITTER_USER_URL
 import com.twitter.sdk.android.core.Callback
 import com.twitter.sdk.android.core.Result
 import com.twitter.sdk.android.core.TwitterApiClient
 import com.twitter.sdk.android.core.TwitterException
-import com.twitter.sdk.android.core.models.User
+import com.diego.tweetssentimentsanalyzer.feature.searchUser.model.User
 import io.reactivex.Observable
 import retrofit2.Call
 import okhttp3.OkHttpClient
@@ -49,9 +51,9 @@ class CustomTwitterApiClient(okHttpClient: OkHttpClient) : TwitterApiClient(okHt
 }
 
 interface Service {
-    @retrofit2.http.GET("/1.1/users/show.json")
+    @retrofit2.http.GET(TWITTER_USER_URL)
     fun show(@retrofit2.http.Query("screen_name") screenName: String): Call<User>
 
-    @retrofit2.http.GET("/1.1/statuses/user_timeline.json")
+    @retrofit2.http.GET(TWITTER_TWEETS_URL)
     fun getUserTweets(@retrofit2.http.Query("screen_name") screenName: String): Call<List<Tweet>>
 }

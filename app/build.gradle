@@ -37,7 +37,14 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation "com.android.support.test:rules:1.0.2"
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:3.0.2"
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:3.0.2") {
+        exclude group: 'com.android.support'
+        exclude module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+    }
 
     implementation "org.koin:koin-android-architecture:$koin_version"
     implementation "com.android.support:support-emoji-appcompat:$support_libraries_version"
@@ -62,4 +69,5 @@ dependencies {
     testImplementation group: 'org.mockito', name: 'mockito-inline', version: '2.7.21'
     testImplementation 'android.arch.core:core-testing:1.1.1'
     implementation group: 'com.google.collections', name: 'google-collections', version: '1.0-rc2'
+    testImplementation 'org.koin:koin-test:0.9.3'
 }

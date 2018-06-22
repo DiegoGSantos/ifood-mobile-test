@@ -19,4 +19,5 @@
     <string name="sad_emoji_text">Sad Tweet!!</string>
     <string name="happy_emoji">😃</string>
     <string name="happy_emoji_text">Happy Tweet!!</string>
+    <string name="no_tweets_message">Nenhum tweet encontrado para este usuário</string>
 </resources>
