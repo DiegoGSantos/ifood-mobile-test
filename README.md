@@ -6,7 +6,7 @@
   <img src="screenshot-3.png" width="250"/>
 </p>
 
-You can try it out from this <a href="https://drive.google.com/file/d/1CcF4o62o3o_9ALt8fInO4HXqy1pT5rKY/view?usp=sharing">link here!</a>
+You can try it out from this <a href="https://drive.google.com/open?id=1yUOZ5YeP4nynwest_7nUzhkCiVy_U87o">link here!</a>
 
 This app list tweets from one user you search, list its info and tweets and analyze each tweet sentiment.
 It uses:
